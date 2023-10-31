@@ -1,0 +1,11 @@
+name: 'Check ranking for each keyword'
+on:
+  schedule:
+    - cron: '0 1 * * *'
+jobs:
+    cron:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Call route [seoDetective]/api/check-all-keywords
+          run: |
+            curl 'https://YOURSEODETECTIVEDOMAIN/api/check-all-keywords'
