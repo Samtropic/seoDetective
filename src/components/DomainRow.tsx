@@ -2,21 +2,20 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IKeyword } from "@/models/Keywords";
+import { IDomain } from "@/models/Domains";
 
 export interface DomainRowProps {
-  owner: string;
-  domain: string;
-  icon: string;
+  domainProps: IDomain;
   keywords: Array<IKeyword>;
 }
 
-const DomainRow = ({ domain, icon, keywords }: DomainRowProps) => {
+const DomainRow = ({ ...props }: DomainRowProps) => {
   return (
     <div className="flex items-center bg-white border border-orange-200 border-b-4 p-4 rounded-lg my-3 hover:bg-medium-orange">
-      {icon && (
+      {props.domainProps.icon && (
         <Image
           className=""
-          src={icon}
+          src={props.domainProps.icon}
           alt="domain 1 logo"
           width={50}
           height={50}
@@ -24,16 +23,19 @@ const DomainRow = ({ domain, icon, keywords }: DomainRowProps) => {
       )}
       <div className="grow pl-3">
         <Link
-          href={"/domains/" + domain}
+          href={"/domains/" + props.domainProps.domain}
           className="font-bold text-lg leading-7 hover:text-white"
         >
-          {domain}
+          {props.domainProps.domain}
         </Link>
         <div>
-          {keywords.map((keywdDoc) => (
+          {props.keywords.map((keywdDoc) => (
             <Link
-              href={"/domains/" + domain + "/" + keywdDoc.keyword}
-              className="bg-orange-100 inline-block p-1 mr-1 rounded-md text-xs hover:bg-dark-orange hover:text-white"
+              key={props.domainProps.domain + keywdDoc.keyword}
+              href={
+                "/domains/" + props.domainProps.domain + "/" + keywdDoc.keyword
+              }
+              className="bg-light-orange inline-block p-1 mr-1 rounded-md text-xs hover:bg-dark-orange hover:text-white"
             >
               {keywdDoc.keyword}
             </Link>

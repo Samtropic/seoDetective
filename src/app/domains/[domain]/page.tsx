@@ -76,6 +76,7 @@ const DomainPage = (pageProps: PageProps) => {
         keywords.map((keywordDoc: IKeyword) => (
           <KeywordRow
             keywordProps={keywordDoc}
+            key={keywordDoc._id}
             rankProps={ranks.filter((r) => r.keyword === keywordDoc.keyword)}
           />
         ))}

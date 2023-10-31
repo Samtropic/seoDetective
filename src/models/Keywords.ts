@@ -1,6 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
 export interface IKeyword {
+  _id: string;
   domain: string;
   keyword: string;
   owner: string;

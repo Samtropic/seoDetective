@@ -2,6 +2,13 @@ import { Schema, model, models } from "mongoose";
 
 const domainRegex = /[a-z0-9]+\.[a-z0-9\.]+/;
 
+export interface IDomain {
+  _id: string;
+  domain: string;
+  owner: string;
+  icon: string;
+}
+
 const DomainSchema = new Schema(
   {
     domain: {

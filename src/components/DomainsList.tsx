@@ -1,10 +1,11 @@
 "use client";
 import DomainRow, { DomainRowProps } from "@/components/DomainRow";
 import DoubleHeader from "@/components/DoubleHeader";
+import { IDomain } from "@/models/Domains";
 import { IKeyword } from "@/models/Keywords";
 
 export interface DomainsListProps {
-  domains: Array<DomainRowProps>;
+  domains: Array<IDomain>;
   keywords: Array<IKeyword>;
 }
 
@@ -19,9 +20,10 @@ const DomainsList = ({ domains, keywords }: DomainsListProps) => {
             : domains.length + " domain"
         }
       />
-      {domains.map((domainDoc: DomainRowProps) => (
+      {domains.map((domainDoc: IDomain) => (
         <DomainRow
-          {...(domainDoc as DomainRowProps)}
+          domainProps={domainDoc}
+          key={domainDoc._id}
           keywords={keywords.filter((k) => k.domain === domainDoc.domain)}
         />
       ))}

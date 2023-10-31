@@ -41,7 +41,7 @@ const KeywordRow = ({ ...props }: KeywordRowProps) => {
   }
 
   return (
-    <div className="flex items-center gap-2 bg-white border border-orange-200 border-b-4 p-4 pr-0 rounded-lg my-3 hover:bg-medium-orange hover:text-white">
+    <div className="flex items-center gap-2 bg-white border border-orange-200 border-b-4 p-4 pr-0 rounded-lg my-3 hover:bg-light-orange hover:text-medium-orange">
       <Link
         href={
           "/domains/" +
@@ -53,9 +53,25 @@ const KeywordRow = ({ ...props }: KeywordRowProps) => {
       >
         {props.keywordProps.keyword}
       </Link>
-      <div className="w-[300px] h-24">
-        {!latestRank && latestRank !== 0 && <div>Checking rank...</div>}
-        {latestRank && <Chart rankings={props.rankProps} chartWidth={300} />}
+      {!isNaN(latestRank) && latestRank.toString() === "0" && (
+        <div className="text-center bg-light-orange inline-block p-1 mr-1 rounded-md text-xs hover:bg-dark-orange hover:text-white">
+          Not available or unranked
+        </div>
+      )}
+      {!isNaN(latestRank) && latestRank.toString() !== "0" && (
+        <div className="text-center bg-light-orange inline-block p-1 mr-1 rounded-md text-xs hover:bg-dark-orange hover:text-white">
+          {latestRank}
+        </div>
+      )}
+      <div className="grid-flow-col w-[300px] h-24">
+        {isNaN(latestRank) && (
+          <div className="flex items-center justify-center text-center h-24 animate-pulse">
+            Checking rank...
+          </div>
+        )}
+        {!isNaN(latestRank) && latestRank.toString() !== "0" && (
+          <Chart rankings={props.rankProps} chartWidth={300} />
+        )}
       </div>
     </div>
   );
