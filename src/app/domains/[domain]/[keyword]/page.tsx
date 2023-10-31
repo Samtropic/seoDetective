@@ -21,9 +21,7 @@ const KeywordPage = (pageProps: PageProps) => {
     axios
       .get("/api/keywords?keyword=" + keyword + "&domain=" + domain)
       .then((response) => {
-        console.log(response.data.ranks.length);
         setRankings(response.data.ranks);
-        console.log(rankings.length);
       });
   }, []);
 

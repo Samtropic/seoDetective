@@ -150,6 +150,7 @@ async function getOrganicResults(domain: string, keyword: string) {
   let finalRes = -999;
   finalRes = await findIndex(organicResults, domain);
   console.log("&&&&& RANKING SCRIPT &&&&&");
+  console.log({ keyword: keyword });
   console.log({ rank: finalRes, size: organicResults.length });
   console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&");
   myorganicResults = [];
