@@ -54,18 +54,21 @@ const KeywordRow = ({ ...props }: KeywordRowProps) => {
         {props.keywordProps.keyword}
       </Link>
       {!isNaN(latestRank) && latestRank.toString() === "0" && (
-        <div className="text-center bg-light-orange inline-block p-1 mr-1 rounded-md text-xs hover:bg-dark-orange hover:text-white">
+        <div className="text-center bg-light-orange inline-block p-1 mr-1 rounded-md text-xs">
           Not available or unranked
         </div>
       )}
       {!isNaN(latestRank) && latestRank.toString() !== "0" && (
-        <div className="text-center bg-light-orange inline-block p-1 mr-1 rounded-md text-xs hover:bg-dark-orange hover:text-white">
-          {latestRank}
-        </div>
+        <>
+          <div className="text-center inline-block text-xs">Last Rank: </div>
+          <div className="text-center bg-light-orange inline-block p-1 mr-1 rounded-md text-xs">
+            {latestRank}
+          </div>
+        </>
       )}
       <div className="grid-flow-col w-[300px] h-24">
         {isNaN(latestRank) && (
-          <div className="flex items-center justify-center text-center h-24 animate-pulse">
+          <div className="flex items-center justify-center text-center h-24 animate-pulse font-semibold">
             Checking rank...
           </div>
         )}

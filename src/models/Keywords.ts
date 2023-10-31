@@ -20,4 +20,6 @@ const KeywordSchema = new Schema(
   { timestamps: true }
 );
 
+KeywordSchema.index({ domain: 1, keyword: 1, owner: 1 }, { unique: true });
+
 export const Keyword = models?.Keyword || model("Keyword", KeywordSchema);

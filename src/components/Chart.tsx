@@ -10,8 +10,6 @@ interface ChartProps {
 function Chart({ rankings, chartWidth }: ChartProps) {
   const lowestRank = rankings.sort((a, b) => (a.rank < b.rank ? 1 : 0))?.[0]
     .rank;
-  const highestRank = rankings.sort((a, b) => (a.rank > b.rank ? 1 : 0))?.[0]
-    .rank;
   const domainLow = lowestRank + 3;
 
   const data = rankings
@@ -35,7 +33,7 @@ function Chart({ rankings, chartWidth }: ChartProps) {
               <stop offset="95%" stopColor="#82ca9d" stopOpacity={0.15} />
             </linearGradient>
           </defs>
-          <YAxis hide={true} domain={[0, lowestRank]} />
+          <YAxis hide={true} domain={[-20, lowestRank]} />
           <Tooltip
             labelFormatter={(active, payload) =>
               new Date(payload[0]?.payload.date).toLocaleDateString()

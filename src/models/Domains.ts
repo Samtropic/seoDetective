@@ -22,4 +22,6 @@ const DomainSchema = new Schema(
   { timestamps: true }
 );
 
+DomainSchema.index({ domain: 1, owner: 1 }, { unique: true });
+
 export const Domain = models?.Domain || model("Domain", DomainSchema);
