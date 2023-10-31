@@ -66,14 +66,14 @@ const KeywordRow = ({ ...props }: KeywordRowProps) => {
           </div>
         </>
       )}
-      <div className="grid-flow-col w-[300px] h-24">
+      <div className="grid-flow-col grow min-w-[84px] h-24">
         {isNaN(latestRank) && (
           <div className="flex items-center justify-center text-center h-24 animate-pulse font-semibold">
             Checking rank...
           </div>
         )}
         {!isNaN(latestRank) && latestRank.toString() !== "0" && (
-          <Chart rankings={props.rankProps} chartWidth={300} />
+          <Chart rankings={props.rankProps} />
         )}
       </div>
     </div>

@@ -1,13 +1,12 @@
 import { IKeywordRankings } from "@/models/KeywordRanking";
-import React from "react";
+import React, { useState } from "react";
 import { AreaChart, Tooltip, Area, ResponsiveContainer, YAxis } from "recharts";
 
 interface ChartProps {
   rankings: Array<IKeywordRankings>;
-  chartWidth: number;
 }
 
-function Chart({ rankings, chartWidth }: ChartProps) {
+function Chart({ rankings }: ChartProps) {
   const lowestRank = rankings.sort((a, b) => (a.rank < b.rank ? 1 : 0))?.[0]
     .rank;
   const domainLow = lowestRank + 3;
@@ -21,10 +20,9 @@ function Chart({ rankings, chartWidth }: ChartProps) {
     }));
   return (
     <div className="">
-      <ResponsiveContainer height={100} width={chartWidth}>
+      <ResponsiveContainer height={100}>
         <AreaChart
           data={data}
-          width={chartWidth}
           margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
         >
           <defs>

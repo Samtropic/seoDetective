@@ -1,9 +1,11 @@
 "use client";
+import Chart from "@/components/Chart";
 import DeleteButton from "@/components/DeleteButton";
 import DoubleHeader from "@/components/DoubleHeader";
+import { IKeywordRankings } from "@/models/KeywordRanking";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -13,6 +15,17 @@ const KeywordPage = (pageProps: PageProps) => {
   const keyword = decodeURIComponent(pageProps?.params.keyword);
   const domain = pageProps?.params.domain;
   const router = useRouter();
+  const [rankings, setRankings] = useState([] as IKeywordRankings[]);
+
+  useEffect(() => {
+    axios
+      .get("/api/keywords?keyword=" + keyword + "&domain=" + domain)
+      .then((response) => {
+        console.log(response.data.ranks.length);
+        setRankings(response.data.ranks);
+        console.log(rankings.length);
+      });
+  }, []);
 
   function deleteKeyword() {
     const urlParams =
@@ -56,7 +69,17 @@ const KeywordPage = (pageProps: PageProps) => {
           <DeleteButton onClick={showDeleteAlert} />
         </div>
       </div>
-      <div className="bg-green-200 h-36 "></div>
+      <div className="h-36 ">
+        {rankings.length > 0 && rankings[0].rank !== 0 && (
+          <Chart rankings={rankings} />
+        )}
+        {((rankings.length > 0 && rankings[0].rank === 0) ||
+          rankings.length === 0) && (
+          <div className="flex text-center justify-center items-center font-semibold">
+            No rank registered
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -26,11 +26,13 @@ export async function GET(req: Request) {
   mongoose.connect(process.env.MONGODB_URI as string);
   const url = new URL(req.url);
   const domain = url.searchParams.get("domain");
+  const keyword = url.searchParams.get("keyword");
   const session = await getServerSession(authOptions);
-  const keywordsDocuments = await Keyword.find({
-    owner: session?.user?.email,
-    domain: domain,
-  });
+  const keywordsDocuments = await Keyword.find(
+    keyword
+      ? { owner: session?.user?.email, domain, keyword }
+      : { owner: session?.user?.email, domain: domain }
+  );
   const keywordRankingDocuments = await KeywordRanking.find({
     owner: session?.user?.email,
     domain: domain,
