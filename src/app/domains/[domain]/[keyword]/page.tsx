@@ -11,9 +11,13 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
-const KeywordPage = (pageProps: PageProps) => {
-  const keyword = decodeURIComponent(pageProps?.params.keyword);
-  const domain = pageProps?.params.domain;
+const KeywordPage = ({
+  params,
+}: {
+  params: { domain: string; keyword: string };
+}) => {
+  const keyword = decodeURIComponent(params?.keyword);
+  const domain = params?.domain;
   const router = useRouter();
   const [rankings, setRankings] = useState([] as IKeywordRankings[]);
 

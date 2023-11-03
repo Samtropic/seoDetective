@@ -14,8 +14,8 @@ import { IKeywordRankings } from "@/models/KeywordRanking";
 
 const MySwal = withReactContent(Swal);
 
-const DomainPage = (pageProps: PageProps) => {
-  const domain = pageProps?.params.domain;
+const DomainPage = ({ params }: { params: { domain: string } }) => {
+  const domain = params?.domain;
   const router = useRouter();
   const [keywords, setKeywords] = useState([] as IKeyword[]);
   const [ranks, setRanks] = useState([] as IKeywordRankings[]);
