@@ -42,9 +42,9 @@ const DomainRow = ({ ...props }: DomainRowProps) => {
           ))}
         </div>
       </div>
-      <div>
+      {/* <div>
         <div className="bg-green-100 w-36 h-24"></div>
-      </div>
+      </div> */}
     </div>
   );
 };

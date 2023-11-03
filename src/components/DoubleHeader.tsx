@@ -17,7 +17,7 @@ const DoubleHeader = ({
       {preTitleLink && (
         <Link
           href={preTitleLink}
-          className="block text-gray-300 text-lg uppercase"
+          className="block text-gray-300 text-lg uppercase hover:text-medium-orange"
         >
           {preTitle}
         </Link>
