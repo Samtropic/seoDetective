@@ -1,3 +1,14 @@
+## What is this about ?
+A very minimalist SEO app that retrieves a domain's keyword Google ranks.
+
+This app lets you manage a list of domains. Within each domain, there's a list of keywords. 
+It uses Puppeteer in a very "naive" fashion, as neither obfuscation methods nor a proxy server are used.
+
+A queue allows you to add additional keywords without waiting for the previous one to get its ranking.
+
+This project was one of my first hands-on experience with React/Next.js (yes, prop drilling!) and I have no pretensions of it being a well-made application.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
